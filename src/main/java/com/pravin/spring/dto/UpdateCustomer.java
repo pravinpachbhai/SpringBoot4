@@ -11,7 +11,6 @@ public record UpdateCustomer(
         String city,
         @NotBlank(message = "zipCode is mandatory")
         @Size(min = 5, max = 5, message = "Zipcode must be exactly 5 characters")
-        @Pattern(regexp = "\\d+")
         String zipCode) {
 
 }

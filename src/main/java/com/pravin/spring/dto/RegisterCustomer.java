@@ -13,6 +13,5 @@ public record RegisterCustomer(@NotBlank(message = "Name is mandatory") String n
                                @Size(min = 5, max = 5, message = "Zipcode must be exactly 5 characters")
                                String zipCode,
                                @NotBlank(message = "Email is mandatory")
-                               @Pattern(regexp = "\\d+")
                                String email) {
 }
