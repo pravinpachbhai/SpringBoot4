@@ -19,9 +19,9 @@ public class InventoryController {
         this.service = service;
     }
 
-    @GetMapping("/inventory/{productId}")
-    public ResponseEntity<Mono<String>> inventory(@PathVariable("productId") String productId) {
-        return ResponseEntity.status(HttpStatus.OK).body(service.getInventory(productId));
+    @GetMapping("/inventory/{quantity}")
+    public ResponseEntity<String> inventory(@PathVariable("quantity") String quantity) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.getInventory(quantity));
     }
 }
 
