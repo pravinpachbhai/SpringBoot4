@@ -1,8 +1,6 @@
 package com.pravin.spring.exception;
 
-import com.pravin.spring.component.CorrelationIdFilter;
 import io.opentelemetry.api.trace.Span;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -19,7 +17,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(CustomerNotFoundException.class)
     public ProblemDetail handleCustomerNotFound(
-            CustomerNotFoundException ex ) {
+            CustomerNotFoundException ex) {
         log.error("Customer not found: {}", ex.getMessage(), ex);
         String traceId = Span.current().getSpanContext().getTraceId();
         ProblemDetail problem = ProblemDetail.forStatus(HttpStatus.NOT_FOUND);

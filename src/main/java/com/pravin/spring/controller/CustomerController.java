@@ -1,6 +1,5 @@
 package com.pravin.spring.controller;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import com.pravin.spring.dto.CustomerDto;
 import com.pravin.spring.dto.PagedResponse;
 import com.pravin.spring.dto.RegisterCustomer;
@@ -12,10 +11,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import org.springframework.data.domain.Page;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +37,7 @@ public class CustomerController {
     @Operation(summary = "Get paginated customers", description = "Fetches a paginated list of customers with optional sorting and paging parameters")
     @ApiResponse(responseCode = "200", description = "Successfully retrieved paginated customers", content = @Content(schema = @Schema(implementation = PagedResponse.class)))
     @ApiResponse(responseCode = "500", description = "Internal server error",content = @Content(schema = @Schema(implementation = ProblemDetail.class)))
-    public ResponseEntity<PagedResponse<CustomerDto>>  getCustomers(@PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+    public ResponseEntity<PagedResponse<CustomerDto>> getCustomers(Pageable pageable) {
         log.info("Get paginated customers");
         return ResponseEntity.ok(customerService.getCustomers(pageable));
     }
